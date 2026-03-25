@@ -1,47 +1,61 @@
-import java.util.Set;
-import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
- * MAIN CLASS - UseCase5TrainConsistMgmnt
+ * MAIN CLASS - UseCase8TrainConsistMgmnt
  *
- * Use Case 5: Preserve Insertion Order of Bogies
- *
- * Description:
- * This class maintains the exact attachment order of bogies
- * while also preventing duplicate entries using LinkedHashSet.
+ * Use Case 8: Filter Passenger Bogies Using Streams
  *
  * @author Developer
- * @version 5.0
+ * @version 8.0
  */
 
 public class TrainConsistMgmnt {
 
+    // Reusing Bogie class
+    static class Bogie {
+        String name;
+        int capacity;
+
+        Bogie(String name, int capacity) {
+            this.name = name;
+            this.capacity = capacity;
+        }
+    }
+
     public static void main(String[] args) {
 
         // Header
-        System.out.println("========================================");
-        System.out.println(" UC5 - Preserve Insertion Order of Bogies ");
-        System.out.println("========================================\n");
+        System.out.println("==============================================");
+        System.out.println(" UC8 - Filter Passenger Bogies Using Streams ");
+        System.out.println("==============================================\n");
 
-        // LinkedHashSet preserves order + uniqueness
-        Set<String> formation = new LinkedHashSet<>();
+        // Create list
+        List<Bogie> bogies = new ArrayList<>();
 
-        // ---- ADD bogies ----
-        formation.add("Engine");
-        formation.add("Sleeper");
-        formation.add("Cargo");
-        formation.add("Guard");
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 56));
+        bogies.add(new Bogie("First Class", 24));
+        bogies.add(new Bogie("General", 90));
 
-        // Duplicate (will be ignored)
-        formation.add("Sleeper");
+        // ---- DISPLAY ALL ----
+        System.out.println("ALL Bogies:");
+        for (Bogie b : bogies) {
+            System.out.println(b.name + " -> " + b.capacity);
+        }
 
-        // Display final formation
-        System.out.println("Final Train Formation:");
-        System.out.println(formation);
+        // ---- STREAM FILTER ----
+        List<Bogie> filtered = bogies.stream()
+                .filter(b -> b.capacity > 60)
+                .collect(Collectors.toList());
 
-        System.out.println("\nNote:");
-        System.out.println("LinkedHashSet preserves insertion order and removes duplicates automatically.");
+        // ---- DISPLAY FILTERED ----
+        System.out.println("\nFiltered Bogies (Capacity > 60):");
+        for (Bogie b : filtered) {
+            System.out.println(b.name + " -> " + b.capacity);
+        }
 
-        System.out.println("\nUC5 formation setup completed ...");
+        System.out.println("\nUC8 filtering completed ...");
     }
 }
