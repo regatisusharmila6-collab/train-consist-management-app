@@ -1,26 +1,58 @@
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * MAIN CLASS - UseCase2TrainConsistMgmnt
+ *
+ * Use Case 2: Add Passenger Bogies to Train
+ *
+ * Description:
+ * This class demonstrates how passenger bogies can be
+ * managed dynamically using ArrayList operations.
+ *
+ * - Adds new bogies
+ * - Removes bogies
+ * - Checks existence
+ * - Displays final consist
+ *
+ * @author Developer
+ * @version 2.0
+ */
+
 public class TrainConsistMgmnt {
 
-    public  static void main(String[] args) {
+    public static void main(String[] args) {
 
-        // Display welcome banner
+        // Display header
         System.out.println("====================================");
-        System.out.println(" Train Consist Management App ");
+        System.out.println(" UC2 - Add Passenger Bogies to Train ");
         System.out.println("====================================\n");
 
-        // Create a dynamic list to store train bogies
-        List<String> trainConsist = new ArrayList<>();
+        // Create an ArrayList to hold passenger bogies
+        List<String> passengerBogies = new ArrayList<>();
 
-        // Display initial consist information
-        System.out.println("Train initialized successfully ...");
+        // ---- CREATE (Add bogies)
+        passengerBogies.add("Sleeper");
+        passengerBogies.add("AC Chair");
+        passengerBogies.add("First Class");
 
-        // Display initial bogie count
-        System.out.println("Initial Bogie Count : " + trainConsist.size());
+        // Display after adding
+        System.out.println("After Adding Bogies:");
+        System.out.println(passengerBogies);
 
-        // Display current state of train
-        System.out.println("Current Train Consist : " + trainConsist);
+        // ---- DELETE (Remove bogie)
+        passengerBogies.remove("AC Chair");
 
+        System.out.println("\nAfter Removing 'AC Chair':");
+        System.out.println(passengerBogies);
+
+        // ---- READ (Check existence)
+        boolean exists = passengerBogies.contains("Sleeper");
+
+        System.out.println("\nIs 'Sleeper' present? " + exists);
+
+        // ---- Final State
+        System.out.println("\nFinal Train Consist:");
+        System.out.println(passengerBogies);
     }
 }
